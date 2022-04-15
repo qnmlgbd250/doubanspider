@@ -19,7 +19,7 @@ info_lists = []
 
 class DoubanSpider_new(object):
     def __init__(self):
-        self.redis_pool = redis.ConnectionPool(host='127.0.0.1', port=6379, db=1, decode_responses=True)
+        self.redis_pool = redis.ConnectionPool(host='120.24.40.232', port=6379, db=1, decode_responses=True)
         self.redis_conn = redis.Redis(connection_pool=self.redis_pool)
 
         self.url = 'https://movie.douban.com/people/216412178/collect'
@@ -105,16 +105,17 @@ class DoubanSpider_new(object):
 
 if __name__ == '__main__':
     douban = DoubanSpider_new()
-    douban.get_every_page_url()
-
-    thred1_list = []
-    for _ in range(10):
-        t1 = Thread(target=douban.get_every_page_movie_sid)
-        thred1_list.append(t1)
-        t1.start()
-
-    for t1_ in thred1_list:
-        t1_.join()
+    douban.find_fish()
+    # douban.get_every_page_url()
+    #
+    # thred1_list = []
+    # for _ in range(10):
+    #     t1 = Thread(target=douban.get_every_page_movie_sid)
+    #     thred1_list.append(t1)
+    #     t1.start()
+    #
+    # for t1_ in thred1_list:
+    #     t1_.join()
 
     # thred2_list = []
     # for _ in range(25):
