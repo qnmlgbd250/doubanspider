@@ -12,10 +12,19 @@
 
 import re
 import csv
+# from lxml import etree
+#
+# tree = etree.HTML('./test.html')
+# li_list = tree.xpath('//*[@id="content"]/div[2]/div[1]/div[2]/div')
+# print(li_list)
+import re
+with open('./test.html', 'r', encoding='utf-8') as f:
 
-sid = '30306570'
-with open('douban_movie.csv','rt',encoding='utf-8') as csvfile:
-    reader = csv.reader(csvfile)
-    column = [row[0] for row in reader]
-
-    print(column)
+    movie_director = re.findall(r'<meta property="video:actor" content="(.*?)" />', f.read())
+    print(' '.join(movie_director))
+# sid = '30306570'
+# with open('douban_movie.csv','rt',encoding='utf-8') as csvfile:
+#     reader = csv.reader(csvfile)
+#     column = [row[0] for row in reader]
+#
+#     print(column)
